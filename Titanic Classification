@@ -1,0 +1,29 @@
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import GradientBoostingClassifier
+
+# Load the Titanic passenger data
+titanic_df = pd.read_csv("titanic_passengers.csv")
+
+# Select the features that we want to use to predict survival
+features = ["Sex", "Age", "Pclass", "Fare", "SibSp", "Parch", "Cabin"]
+
+# Create the training and testing sets
+X_train = titanic_df[features]
+y_train = titanic_df["Survived"]
+
+# Create the gradient boosting machine model
+model = GradientBoostingClassifier()
+
+# Train the model
+model.fit(X_train, y_train)
+
+# Make predictions for the testing set
+X_test = titanic_df[features]
+y_pred = model.predict(X_test)
+
+# Calculate the accuracy of the model
+accuracy = np.mean(y_pred == y_test)
+
+# Print the accuracy of the model
+print("Accuracy:", accuracy)
